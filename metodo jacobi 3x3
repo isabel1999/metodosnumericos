@@ -1,0 +1,30 @@
+
+from pprint import pprint
+from numpy import array, zeros, diag, diagflat, dot
+
+def jacobi(A,b,N=3,x=None):
+    """Resuelve la ecuación Ax = b mediante el método iterativo de Jacobi."""
+    #Crea una suposición inicial si es necesario                                                                                                                                                          
+    if x is None:
+        x = zeros(len(A[0]))
+
+    # Crea un vector de los elementos diagonales de A                                                                                                                                               
+    # Y restarlas de A                                                                                                                                                                    
+    D = diag(A)
+    R = A - diagflat(D)
+
+    # iterar por N veces                                                                                                                                                                          
+    for i in range(N):
+        x = (b - dot(R,x)) / D
+    return x
+
+A = array([[4,1,1],[2,-5,1],[1,2,7]])
+b = array([6,-2,10])
+guess = array([0.99,0.99,0.99])
+
+sol = jacobi(A,b,N=3,x=guess)
+
+
+
+print ("x:")
+pprint(sol)

@@ -1,0 +1,37 @@
+#4x -  y = 10
+#2x  + 4y= 14
+
+
+
+def seidel(a, x ,b): 
+    #matriz 2x2        
+    n = len(a)                    
+    #  x, y 
+    for j in range(0, n):         
+        # variable d para señalar los numeros dentro de b  despues del =  b[j] 
+        d = b[j]                   
+          
+        # para calcular respectivamente xi, yi 
+        for i in range(0, n):      
+            if(j != i): 
+                d-=a[j][i] * x[i] 
+        # actualizar el valor de la solucion         
+        x[j] = d / a[j][j] 
+    # devolviendo nuestra solucion actualizada           
+    return x     
+   
+# int(input())entrada de numeros con variables                  
+n = 2                             
+a = []                             
+b = []         
+# solucion primera dependiendo de la  n( n=3)                      
+x = [0, 0 ]                         
+a = [[4,-1],[2,4]] 
+b = [10,14] 
+print(x) 
+  
+#ciclo ejecutado por m veces dependiendo de m valor 
+for i in range(0, 8):             
+    x = seidel(a, x, b) 
+    #imprimir cada vez que el valor de la solucion actualizada
+    print(x)

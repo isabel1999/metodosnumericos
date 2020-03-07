@@ -1,0 +1,37 @@
+#8x+ 4y - 3z= 14
+#2x- 5y+ 3z= -1
+#-3x+ y+ 9z= 9
+
+
+def seidel(a, x ,b): 
+    #matriz 3x3        
+    n = len(a)                    
+    #  x, y , z 
+    for j in range(0, n):         
+        # variable d para señalar los numeros dentro de b  despues del =  b[j] 
+        d = b[j]                   
+          
+        # para calcular respectivamente xi, yi, zi 
+        for i in range(0, n):      
+            if(j != i): 
+                d-=a[j][i] * x[i] 
+        # actualizar el valor de la solucion         
+        x[j] = d / a[j][j] 
+    # devolviendo nuestra solucion actualizada           
+    return x     
+   
+# int(input())entrada de numeros con variables                  
+n = 3                              
+a = []                             
+b = []         
+# solucion primera dependiendo de la  n( n=3)                      
+x = [0, 0, 0]                         
+a = [[8, 4, -3],[2, -5, 3],[-3, 1, 9]] 
+b = [14,-1,9] 
+print(x) 
+  
+#ciclo ejecutado por m veces dependiendo de m valor 
+for i in range(0, 5):             
+    x = seidel(a, x, b) 
+    #imprimir cada vez que el valor de la solucion actualizada
+    print(x)
